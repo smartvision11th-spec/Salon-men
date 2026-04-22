@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxe Hair Studio - Professional Hair Salon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #2d2d2d;
+            background: #fafafa;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #d4a574;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffffff 0%, #f5f3f0 50%, #e8e6e3 100%);
+            padding-top: 80px;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 300;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 40px;
+            background: #8b7d7a;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            background: #6b5d5a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 125, 122, 0.2);
+        }
+
+        .hero-image {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .chevron-bounce {
+            text-align: center;
+            padding: 40px 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0s; }
+        .service-card:nth-child(2) { animation-delay: 0.1s; }
+        .service-card:nth-child(3) { animation-delay: 0.2s; }
+        .service-card:nth-child(4) { animation-delay: 0.3s; }
+        .service-card:nth-child(5) { animation-delay: 0.4s; }
+        .service-card:nth-child(6) { animation-delay: 0.5s; }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .service-card .price {
+            color: #d4a574;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.5s; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Testimonials */
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .testimonial:nth-child(1) { animation-delay: 0s; }
+        .testimonial:nth-child(2) { animation-delay: 0.1s; }
+        .testimonial:nth-child(3) { animation-delay: 0.2s; }
+
+        .testimonial-header {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-info h4 {
+            margin: 0;
+            color: #1a1a1a;
+            font-size: 16px;
+        }
+
+        .stars {
+            color: #d4a574;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .testimonial-text {
+            color: #666;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .team-member:nth-child(1) { animation-delay: 0s; }
+        .team-member:nth-child(2) { animation-delay: 0.1s; }
+        .team-member:nth-child(3) { animation-delay: 0.2s; }
+
+        .team-image {
+            width: 100%;
+            height: 350px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover .team-image img {
+            transform: scale(1.05);
+        }
+
+        .team-member h3 {
+            font-size: 22px;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .team-member .title {
+            color: #d4a574;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .team-member p {
+            color: #999;
+            line-height: 1.6;
+        }
+
+        /* Blog */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .blog-card:nth-child(1) { animation-delay: 0s; }
+        .blog-card:nth-child(2) { animation-delay: 0.1s; }
+        .blog-card:nth-child(3) { animation-delay: 0.2s; }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 30px;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: #f0ebe8;
+            color: #8b7d7a;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .blog-content h3 {
+            font-size: 20px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .blog-date {
+            color: #999;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .blog-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            color: #8b7d7a;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #6b5d5a;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d2d2d;
+            color: white;
+            padding: 60px 40px;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #d4a574;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+
+        .social-icon:hover {
+            background: #d4a574;
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: #999;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero-text h1 {
+                font-size: 40px;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            .nav-links {
+                gap: 20px;
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .nav {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+    <div class="nav-logo">Luxe Hair Studio</div>
+    <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>Transform Your Hair, Transform Yourself</h1>
+            <p>Premium hair styling and color treatments designed to bring out your best self. Experience luxury at every visit.</p>
+            <button class="cta-button">Book Your Appointment</button>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1633159720006-5ec9a58b90dc?w=600&h=700&fit=crop" alt="Professional hair styling">
+        </div>
+    </div>
+    <div class="chevron-bounce">
+        ⬇️
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="section">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">✂️</div>
+            <h3>Haircut & Style</h3>
+            <p class="price">$45-75</p>
+            <p>Professional cuts and styling</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <h3>Color Treatment</h3>
+            <p class="price">$80-200</p>
+            <p>Full color, highlights, balayage</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">💇</div>
+            <h3>Hair Extensions</h3>
+            <p class="price">$150-400</p>
+            <p>Premium extensions applied</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">💨</div>
+            <h3>Blow Dry Bar</h3>
+            <p class="price">$35-60</p>
+            <p>Styling & finishing only</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">✨</div>
+            <h3>Keratin Treatment</h3>
+            <p class="price">$120-180</p>
+            <p>Smoothing & conditioning</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">💒</div>
+            <h3>Bridal Styling</h3>
+            <p class="price">$150-250</p>
+            <p>Wedding day hair</p>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery" class="section">
+    <h2 class="section-title">Recent Work</h2>
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1597647521957-a0d826a4e11c?w=400&h=400&fit=crop" alt="Hair style 1">
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1574144611937-0df059b5ef3e?w=400&h=400&fit=crop" alt="Hair style 2">
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1591267990351-8dde41ac7?w=400&h=400&fit=crop" alt="Hair style 3">
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1507893590154-7192e07a4a1c?w=400&h=400&fit=crop" alt="Hair style 4">
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1535495066739-95ce58a28447?w=400&h=400&fit=crop" alt="Hair style 5">
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?w=400&h=400&fit=crop" alt="Hair style 6">
+        </div>
+    </div>
+</section>
+  
+<!-- Testimonials Section -->
+<section class="section">
+    <h2 class="section-title">What Clients Say</h2>
+    <div class="testimonials-container">
+        <div class="testimonial">
+            <div class="testimonial-header">
+                <div class="testimonial-avatar">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Amanda K.">
+                </div>
+                <div class="testimonial-info">
+                    <h4>Amanda K.</h4>
+                    <div class="stars">★★★★★</div>
+                </div>
+            </div>
+            <p class="testimonial-text">"Sarah completely transformed my hair! The color is exactly what I wanted."</p>
+        </div>
+        <div class="testimonial">
+            <div class="testimonial-header">
+                <div class="testimonial-avatar">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Michelle T.">
+                </div>
+                <div class="testimonial-info">
+                    <h4>Michelle T.</h4>
+                    <div class="stars">★★★★★</div>
+                </div>
+            </div>
+            <p class="testimonial-text">"Best salon experience ever. Emma is so talented and made me feel so comfortable."</p>
+        </div>
+        <div class="testimonial">
+            <div class="testimonial-header">
+                <div class="testimonial-avatar">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Lisa W.">
+                </div>
+                <div class="testimonial-info">
+                    <h4>Lisa W.</h4>
+                    <div class="stars">★★★★★</div>
+                </div>
+            </div>
+            <p class="testimonial-text">"My wedding hair was absolutely stunning. Thank you Jessica!"</p>
+        </div>
+    </div>
+</section>
+<!-- Team Section -->
+<section id="team" class="section">
+    <h2 class="section-title">Meet Our Team</h2>
+    <div class="team-grid">
+        <div class="team-member">
+            <div class="team-image">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=600&fit=crop" alt="Sarah Mitchell">
+            </div>
+            <h3>Sarah Mitchell</h3>
+            <p class="title">Master Stylist & Owner</p>
+            <p>15+ years of experience in color theory and cutting techniques.</p>
+        </div>
+        <div class="team-member">
+            <div class="team-image">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&fit=crop" alt="Emma Chen">
+            </div>
+            <h3>Emma Chen</h3>
+            <p class="title">Senior Colorist</p>
+            <p>Specializing in balayage and dimensional color treatments.</p>
+        </div>
+        <div class="team-member">
+            <div class="team-image">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&h=600&fit=crop" alt="Jessica Rodriguez">
+            </div>
+            <h3>Jessica Rodriguez</h3>
+            <p class="title">Styling Specialist</p>
+            <p>Expert in extensions, updos, and bridal styling.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Section -->
+<section id="blog" class="section">
+    <h2 class="section-title">Hair Care Blog</h2>
+    <div class="blog-grid">
+        <div class="blog-card">
+            <div class="blog-image">
+                <img src="https://images.unsplash.com/photo-1516733725302-3917f38b13ca?w=400&h=250&fit=crop" alt="Summer hair care">
+            </div>
+            <div class="blog-content">
+                <span class="blog-category">Tips</span>
+                <h3>Summer Hair Care: Beat the Heat</h3>
+                <p class="blog-date">June 15, 2024</p>
+                <p>Learn how to protect your hair during hot months with our expert tips and product recommendations...</p>
+                <span class="read-more">Read More →</span>
+            </div>
+        </div>
+        <div class="blog-card">
+            <div class="blog-image">
+                <img src="https://images.unsplash.com/photo-1507531173827-b91e0f8a4ab0?w=400&h=250&fit=crop" alt="Fall color trends">
+            </div>
+            <div class="blog-content">
+                <span class="blog-category">Trends</span>
+                <h3>Color Trends for Fall 2024</h3>
+                <p class="blog-date">August 20, 2024</p>
+                <p>Discover the hottest hair color trends this season including rich jewel tones and dimensional balayage...</p>
+                <span class="read-more">Read More →</span>
+            </div>
+        </div>
+        <div class="blog-card">
+            <div class="blog-image">
+                <img src="https://images.unsplash.com/photo-1522338503532-48f68e894c00?w=400&h=250&fit=crop" alt="DIY hair masks">
+            </div>
+            <div class="blog-content">
+                <span class="blog-category">Wellness</span>
+                <h3>DIY Hair Mask Recipes</h3>
+                <p class="blog-date">July 10, 2024</p>
+                <p>Deep conditioning treatments you can make at home with natural ingredients for healthier hair...</p>
+                <span class="read-more">Read More →</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="contact" class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Luxe Hair Studio</h3>
+            <div class="contact-info">
+                📍 123 Main Street, Anytown, ST 12345
+            </div>
+            <div class="contact-info">
+                ☎️ (555) 123-4567
+            </div>
+            <div class="contact-info">
+                ✉️ hello@luxehairstudio.com
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>Hours</h3>
+            <ul class="footer-links">
+                <li>Monday - Friday: 9am - 7pm</li>
+                <li>Saturday: 10am - 6pm</li>
+                <li>Sunday: By appointment</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#team">Meet the Team</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <div class="social-icon">📱</div>
+                <div class="social-icon">👍</div>
+                <div class="social-icon">🐦</div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Luxe Hair Studio. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
